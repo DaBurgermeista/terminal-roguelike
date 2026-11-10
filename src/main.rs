@@ -34,38 +34,49 @@ fn start_new_game() {
 
     let ans = Select::new("Go where:", exits).prompt();
 
-    match ans {
+    let moved = match ans {
         Ok("north") => {
             println!("You travel north.");
             player.position.y -= 1;
+            true
         }
         Ok("south") => {
             println!("You travel south.");
             player.position.y += 1;
+            true
         }
         Ok("east") => {
             println!("You travel east.");
             player.position.x += 1;
+            true
         }
         Ok("west") => {
             println!("You travel west.");
             player.position.x -= 1;
+            true
         }
         Ok(other) => {
             println!("Unexpected direction: {other}");
+            false
         }
         Err(InquireError::OperationCanceled) => {
             println!("Movement cancled");
+            false
         }
         Err(error) => {
             println!("There was an error: {error}");
+            false
         }
     }
-    let new_room = world
-    .room_at(player.position)
-    .expect("Selected exit must lead to a room");
+    // --- Testing Purposes
+    if moved{
+        let new_room = world
+        .room_at(player.position)
+        .expect("Selected exit must lead to a room");
 
-    println!("\nYou arrive at {}.", new_room.name);
+        println!("\nYou arrive at {}.", new_room.name);
+    }
+    // --- End of Testing 
 }
 
 fn run_main_menu() {
