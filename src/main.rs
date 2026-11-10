@@ -14,7 +14,7 @@ fn start_new_game() {
     let rooms = vec![
         Room::starting_room(),
     ];
-    let player = Player::new(String::from("Adventurer"), Position(x: 0, y: 0));
+    let player = Player::new(String::from("Adventurer"), Position {x: 0, y: 0});
     let current_room = &rooms[0];
 
     println!("\nWelcome, {}.", player.name);
