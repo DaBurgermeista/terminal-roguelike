@@ -1,4 +1,5 @@
 use inquire::{error::InquireError, Select};
+use crate::room::RoomId;
 
 mod player;
 mod room;
