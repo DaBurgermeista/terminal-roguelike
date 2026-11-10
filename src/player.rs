@@ -28,19 +28,11 @@ impl Player {
     }
 
     pub fn take_damage(&mut self, damage: i32) {
-        self.health -= damage;
-
-        if self.health < 0 {
-            self.health = 0;
-        }
+        self.health = (self.health - damage).max(0);
     }
 
     pub fn heal(&mut self, amount: i32) {
-        self.health += amount;
-
-        if self.health > self.max_health {
-            self.health = self.max_health;
-        }
+        self.health = (self.health + amount).min(player.max_health)
     }
 
 }
