@@ -1,11 +1,16 @@
 use std::io::{self, Write};
+use inquire::{error::InquireError, Select};
 
 struct Room {
     name: &'static str,
     description: &'static str,
 }
 
-fn main() -> io::Result<()> {
+fn main() -> {
+    run_main_menu();
+}
+
+fn rooms() -> io::Result<()> {
     let entrance_hall = Room {
         name: "Entrance Hall",
         description: concat!(
@@ -44,6 +49,27 @@ fn main() -> io::Result<()> {
     }
 
     Ok(())
+}
+
+fn run_main_menu() {
+    let options: Vec<&str> = vec![
+        "New Game",
+        "Quit Game",
+    ];
+
+    let ans: Result<&str, InquireError> = Select::new("Choose a menu option:", options).prompt();
+
+    match ans {
+        Ok("New Game") => println!("Starting a new game..."),
+        Ok("Quit Game") => println!("Goodbye."),
+        Err(_) => println!("Unexpected menu choice"),
+        Err(InquireError::OperationCanceled) => {
+            println!("Menu canceled.");
+        }
+        Err(error) => {
+            println!("There was an error: {error}");
+        }
+    }
 }
 
 fn display_room(room: &Room, message: &str) {
