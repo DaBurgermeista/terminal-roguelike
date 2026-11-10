@@ -1,29 +1,29 @@
 mod player;
 mod room;
+mod world;
 
 use inquire::{error::InquireError, Select};
-use std::collections::HashMap;
 
+use world::{World, STARTING_POSITION};
 use player::Player;
-use room::{Room, Position};
 
 fn main() {
     run_main_menu();
 }
 
 fn start_new_game() {
-    let rooms = build_starting_world();
+    let world = World::new();
 
     let player = Player::new(
         String::from("Adventurer"),
-        Position { x: 0, y: 0 },
+        STARTING_POSITION,
     );
 
-    let current_room = rooms
-        .get(&player.position)
+    let current_room = world
+        .room_at(player.position)
         .expect("Starting position must contain a room");
 
-    let exits = available_exits(&rooms, player.position);
+    let exits = world.available_exits(player.position);
 
     println!("\nWelcome, {}.", player.name);
     println!("\n{}", current_room.name);
@@ -31,77 +31,6 @@ fn start_new_game() {
     println!("{}", current_room.description);
     println!("\nExits: {}", exits.join(", "));
     println!("\nYour adventure begins here.");
-}
-
-fn build_starting_world() -> HashMap<Position, Room> {
-    let mut rooms = HashMap::new();
-
-    rooms.insert(Position { x: 0, y: 0 }, Room::starting_room());
-
-    rooms.insert(
-        Position { x: 0, y: -1 },
-        Room::new(
-            String::from("Ruined Watchtower"),
-            String::from(
-                "A crumbling watchtower overlooks the forest. Wind whistles \
-                    through gaps in the broken stone walls.",
-            ),
-        ),
-    );
-
-    rooms.insert(
-        Position { x: 1, y: 0 },
-        Room::new(
-            String::from("Forest Road"),
-            String::from(
-                "The old road continues east beneath twisted trees. Deep wagon \
-                    ruts disappear into the mist.",
-            ),
-        ),
-    );
-
-    rooms
-}
-
-fn available_exits(
-    rooms: &HashMap<Position, Room>,
-    position: Position,
-) -> Vec<&'static str> {
-    let possible_exits = [
-        (
-            "north",
-            Position {
-                x: position.x,
-                y: position.y - 1,
-            },
-        ),
-        (
-            "south",
-            Position {
-                x: position.x,
-                y: position.y + 1,
-            },
-        ),
-        (
-            "east",
-            Position {
-                x: position.x + 1,
-                y: position.y,
-            },
-        ),
-        (
-            "west",
-            Position {
-                x: position.x - 1,
-                y: position.y,
-            },
-        ),
-    ];
-
-    possible_exits
-        .iter()
-        .filter_map(|(name, destination)| rooms.contains_key(destination).then_some(*name))
-        .collect()
 }
 
 fn run_main_menu() {
