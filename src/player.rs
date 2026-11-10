@@ -35,7 +35,7 @@ impl Player {
         }
     }
 
-    pub fn heal(%mut self, amount: i32) {
+    pub fn heal(&mut self, amount: i32) {
         self.health += amount;
 
         if self.health > self.max_health {
