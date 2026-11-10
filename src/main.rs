@@ -18,13 +18,14 @@ const DUNGEON: &[&str] = &[
 fn main() -> io::Result<()> {
     let mut player_x: i32 = 5;
     let mut player_y: i32 = 5;
+    let mut message = String::from("You enter the dungeon.");
 
     println!("Terminal Roguelike");
     println!("Move with W A S D, then press Enter.");
     println!("Enter Q to quit.");
 
     loop {
-        draw_dungeon(player_x, player_y);
+        draw_dungeon(player_x, player_y, &message);
 
         print!("\nMove (WASD, Q to quit): ");
         io::stdout().flush()?;
@@ -34,7 +35,7 @@ fn main() -> io::Result<()> {
 
         let command = input.trim().to_lowercase();
 
-        match command.as_str() {
+        message = match command.as_str() {
             "q" => {
                 println!("Thanks for playing.");
                 break;
@@ -43,23 +44,25 @@ fn main() -> io::Result<()> {
             "s" => try_move(&mut player_x, &mut player_y, 0, 1),
             "a" => try_move(&mut player_x, &mut player_y, -1, 0),
             "d" => try_move(&mut player_x, &mut player_y, 1, 0),
-            "" => {}
-            _ => println!("Unknown command. Use W, A, S, D, or Q."),
-        }
+            "" => String::from("You wait."),
+            _ => String::from("Unknown command. Use W, A, S, D, or Q."),
+        };
     }
 
     Ok(())
 }
 
-fn try_move(player_x: &mut i32, player_y: &mut i32, dx: i32, dy: i32) {
+fn try_move(player_x: &mut i32, player_y: &mut i32, dx: i32, dy: i32) -> String {
     let next_x = *player_x + dx;
     let next_y = *player_y + dy;
 
     if is_walkable(next_x, next_y) {
         *player_x = next_x;
         *player_y = next_y;
+
+        String::from("You move.")
     } else {
-        println!("You bump into a wall.");
+        String::from("You bump into a wall.")
     }
 }
 
@@ -75,7 +78,7 @@ fn is_walkable(x: i32, y: i32) -> bool {
     DUNGEON[y as usize].as_bytes()[x as usize] != b'#'
 }
 
-fn draw_dungeon(player_x: i32, player_y: i32) {
+fn draw_dungeon(player_x: i32, player_y: i32, message: &str) {
     println!();
 
     for (y, row) in DUNGEON.iter().enumerate() {
@@ -91,4 +94,7 @@ fn draw_dungeon(player_x: i32, player_y: i32) {
 
         println!("{rendered_row}");
     }
+
+    println!();
+    println!("Message: {message}");
 }
