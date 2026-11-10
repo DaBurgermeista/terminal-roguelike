@@ -36,7 +36,7 @@ The focus is on turn-based exploration, combat, procedural dungeon content, item
 
 ### Milestone 3: Text Adventure Foundation
 
-- [ ] Remove the ASCII-map interface
+- [x] Remove the ASCII-map interface
 - [ ] Create a `Room` data structure
 - [ ] Create a player location represented by a room
 - [ ] Create a named starting room
