@@ -1,16 +1,30 @@
 use inquire::{error::InquireError, Select};
 
 mod player;
+mod room;
+
 use player::Player;
+use room:Room;
 
 fn main() {
     run_main_menu();
 }
 
-fn run_main_menu() {
+fn start_new_game() {
     let player = Player::new(String::from("Adventurer"));
+    let starting_room = Room::starting_room();
 
+    println!();
     println!("Welcome, {}.", player.name);
+    println!();
+    println!("{}", starting_room.name);
+    println!("{}", "-".repeat(starting_room.name.len()));
+    println!("{}", starting_room.description);
+    println!();
+    println!("Your adventure begins here.");
+}
+
+fn run_main_menu() {
 
     let options: Vec<&str> = vec![
         "New Game",
@@ -20,7 +34,9 @@ fn run_main_menu() {
     let ans: Result<&str, InquireError> = Select::new("Choose a menu option:", options).prompt();
 
     match ans {
-        Ok("New Game") => println!("Starting a new game..."),
+        Ok("New Game") => {
+            start_new_game();
+        }
         Ok("Quit Game") => println!("Goodbye."),
         Ok(other) => println!("Unexpected menu choice: {other}"),
         Err(InquireError::OperationCanceled) => {
