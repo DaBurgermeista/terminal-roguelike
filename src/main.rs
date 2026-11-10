@@ -1,11 +1,10 @@
-use inquire::{error::InquireError, Select};
-use crate::room::RoomId;
-
 mod player;
 mod room;
 
+use inquire::{error::InquireError, Select};
+
 use player::Player;
-use room::Room;
+use room::{Room, RoomId};
 
 fn main() {
     run_main_menu();
