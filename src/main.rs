@@ -37,15 +37,19 @@ fn start_new_game() {
     match ans {
         Ok("north") => {
             println!("You travel north.");
+            player.position.y -= 1;
         }
         Ok("south") => {
             println!("You travel south.");
+            player.position.y += 1;
         }
         Ok("east") => {
             println!("You travel east.");
+            player.position.x += 1;
         }
         Ok("west") => {
             println!("You travel west.");
+            player.position.x -= 1;
         }
         Ok(other) => {
             println!("Unexpected direction: {other}");
@@ -57,6 +61,11 @@ fn start_new_game() {
             println!("There was an error: {error}");
         }
     }
+    let new_room = world
+    .room_at(player.position)
+    .expect("Selected exit must lead to a room");
+
+    println!("\nYou arrive at {}.", new_room.name);
 }
 
 fn run_main_menu() {
