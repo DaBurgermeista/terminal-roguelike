@@ -43,8 +43,8 @@ fn build_starting_world() -> HashMap<Position, Room> {
         Room::new(
             String::from("Ruined Watchtower"),
             String::from(
-                "A crumbling watchtower overlooks the forest. Wind whistles ",
-                    "through gaps in the broken stone walls.",
+                "A crumbling watchtower overlooks the forest. Wind whistles \
+                    through gaps in the broken stone walls.",
             ),
         ),
     );
@@ -54,8 +54,8 @@ fn build_starting_world() -> HashMap<Position, Room> {
         Room::new(
             String::from("Forest Road"),
             String::from(
-                "The old road continues east beneath twisted trees. Deep wagon ",
-                    "ruts disappear into the mist.",
+                "The old road continues east beneath twisted trees. Deep wagon \
+                    ruts disappear into the mist.",
             ),
         ),
     );
