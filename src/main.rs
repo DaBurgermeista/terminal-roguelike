@@ -14,7 +14,7 @@ fn main() {
 fn start_new_game() {
     let world = World::new();
 
-    let player = Player::new(
+    let mut player = Player::new(
         String::from("Adventurer"),
         STARTING_POSITION,
     );
@@ -31,6 +31,32 @@ fn start_new_game() {
     println!("{}", current_room.description);
     println!("\nExits: {}", exits.join(", "));
     println!("\nYour adventure begins here.");
+
+    let ans = Select::new("Go where:", exits).prompt();
+
+    match ans {
+        Ok("north") => {
+            println!("You travel north.");
+        }
+        Ok("south") => {
+            println!("You travel south.");
+        }
+        Ok("east") => {
+            println!("You travel east.");
+        }
+        Ok("west") => {
+            println!("You travel west.");
+        }
+        Ok(other) => {
+            println!("Unexpected direction: {other}");
+        }
+        Err(InquireError::OperationCanceled) => {
+            println!("Movement cancled");
+        }
+        Err(error) => {
+            println!("There was an error: {error}");
+        }
+    }
 }
 
 fn run_main_menu() {
