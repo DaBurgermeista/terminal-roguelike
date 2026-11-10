@@ -51,7 +51,7 @@ mod tests {
 
     #[test]
     fn new_player_uses_provided_name() {
-        let mut player = Player::new(String::from("Adventurer"));
+        let player = Player::new(String::from("Adventurer"));
 
         assert_eq!(player.name, "Adventurer")
     }
@@ -69,13 +69,15 @@ mod tests {
 
     #[test]
     fn test_damage() {
-        let player = Player::new(String::from("Adventurer"));
+        let mut player = Player::new(String::from("Adventurer"));
 
         player.take_damage(5);
         assert_eq!(player.health, 5);
+
         player.heal(5);
         assert_eq!(player.health, 10);
+
         player.heal(5);
         assert_eq!(player.health, 10);
-    }
+}
 }
