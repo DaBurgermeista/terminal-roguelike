@@ -1,6 +1,6 @@
 # Terminal Roguelike
 
-A traditional turn-based roguelike written in Rust that runs in a terminal.
+A terminal turn-based roguelike written in Rust that runs in the terminal.
 
 ## Run
 
