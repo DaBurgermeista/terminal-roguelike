@@ -14,14 +14,11 @@ fn start_new_game() {
     let player = Player::new(String::from("Adventurer"));
     let starting_room = Room::starting_room();
 
-    println!();
-    println!("Welcome, {}.", player.name);
-    println!();
-    println!("{}", starting_room.name);
+    println!("\nWelcome, {}.", player.name);
+    println!("\n{}", starting_room.name);
     println!("{}", "-".repeat(starting_room.name.len()));
     println!("{}", starting_room.description);
-    println!();
-    println!("Your adventure begins here.");
+    println!("\nYour adventure begins here.");
 }
 
 fn run_main_menu() {
