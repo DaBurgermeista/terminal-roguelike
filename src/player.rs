@@ -81,6 +81,6 @@ mod tests {
         let mut player = Player::new(String::from("Adventurer"));
 
         player.take_damage(50);
-        assert_eq!(player.is_alive(), false);
+        assert!(!player.is_alive());
     }
 }
