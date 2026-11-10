@@ -62,13 +62,13 @@ fn run_main_menu() {
     match ans {
         Ok("New Game") => println!("Starting a new game..."),
         Ok("Quit Game") => println!("Goodbye."),
-        Err(_) => println!("Unexpected menu choice"),
         Err(InquireError::OperationCanceled) => {
             println!("Menu canceled.");
         }
         Err(error) => {
             println!("There was an error: {error}");
         }
+        Err(_) => println!("Unexpected menu choice"),
     }
 }
 
