@@ -71,11 +71,11 @@ mod tests {
     fn test_damage() {
         let player = Player::new(String::from("Adventurer"));
 
-        player::take_damage(5);
+        player.take_damage(5);
         assert_eq!(player.health, 5);
-        player::heal(5);
+        player.heal(5);
         assert_eq!(player.health, 10);
-        player::heal(5);
+        player.heal(5);
         assert_eq!(player.health, 10);
     }
 }
