@@ -13,7 +13,7 @@ fn main() {
 fn start_new_game() {
     let rooms = vec![
         Room::starting_room(),
-    ]
+    ];
     let player = Player::new(String::from("Adventurer"), RoomId(0));
     let current_room = &rooms[player.current_room.0];
 
