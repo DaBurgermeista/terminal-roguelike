@@ -79,5 +79,8 @@ mod tests {
 
         player.heal(5);
         assert_eq!(player.health, 10);
+
+        player.take_damage(50);
+        assert_eq!(player.health, 0);
 }
 }
