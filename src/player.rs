@@ -74,5 +74,13 @@ mod tests {
 
         player.take_damage(50);
         assert_eq!(player.health, 0);
-}
+    }
+
+    #[test]
+    fn player_is_dead() {
+        let mut player = Player::new(String::from("Adventurer"));
+
+        player.take_damage(50);
+        assert_eq(player.is_alive(), false);
+    }
 }
