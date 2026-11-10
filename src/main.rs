@@ -6,7 +6,7 @@ struct Room {
     description: &'static str,
 }
 
-fn main() -> {
+fn main() {
     run_main_menu();
 }
 
