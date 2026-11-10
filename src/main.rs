@@ -8,10 +8,13 @@ struct Room {
 fn main() -> io::Result<()> {
     let entrance_hall = Room {
         name: "Entrance Hall",
-        description: "You stand in a cold stone hall beneath the ruins of an "
-            "ancient fortress. Water drips steadily from the ceiling. A heavy "
+        description: concat!(
+            "You stand in a cold stone hall beneath the ruins of an ",
+            "ancient fortress. Water drips steadily from the ceiling. A heavy ",
             "wooden door stands to the north.",
+        ),
     };
+
 
     let mut message = "Type LOOK to examine the room, or Q to quit.";
 
