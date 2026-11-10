@@ -44,3 +44,38 @@ impl Player {
     }
 
 }
+
+#[cfg(test)]
+mod tests {
+    use super::Player;
+
+    #[test]
+    fn new_player_uses_provided_name() {
+        let player = Player::new(String::from("Adventurer"));
+
+        asserteq!(player.name, "Adventurer")
+    }
+
+    #[test]
+    fn new_player_has_starting_stats() {
+        let player = Player::new(String::from("Adventurer"));
+
+        asserteq!(player.health, 10);
+        asserteq!(player.max_health, 10);
+        asserteq!(player.attack, 3);
+        asserteq!(player.strength, 3);
+        asserteq!(player.defense, 3);
+    }
+
+    #[test]
+    fn test_damage() {
+        let player = Player::new(String::from("Adventurer"));
+
+        player.take_damage(5);
+        asserteq!(player.health, 5);
+        player.heal(5);
+        asserteq!(player.health, 10);
+        player.heal(5);
+        asserteq!(player.health, 10);
+    }
+}
