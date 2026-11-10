@@ -15,7 +15,7 @@ fn start_new_game() {
         Room::starting_room(),
     ];
     let player = Player::new(String::from("Adventurer"), Position(x: 0, y: 0));
-    let current_room = &rooms[player.current_room.0];
+    let current_room = &rooms[0];
 
     println!("\nWelcome, {}.", player.name);
     println!("\n{}", current_room.name);
