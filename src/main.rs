@@ -4,7 +4,7 @@ mod player;
 mod room;
 
 use player::Player;
-use room:Room;
+use room::Room;
 
 fn main() {
     run_main_menu();
