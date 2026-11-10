@@ -98,15 +98,17 @@ fn draw_dungeon(player_x: i32, player_y: i32) -> io::Result<()> {
     writeln!(output)?;
 
     for (y, row) in DUNGEON.iter().enumerate() {
+        let mut rendered_row = String::with_capacity(row.len());
+
         for (x, tile) in row.chars().enumerate() {
             if x as i32 == player_x && y as i32 == player_y {
-                write!(output, "@")?;
+                rendered_row.push('@');
             } else {
-                write!(output, "{tile}")?;
+                rendered_row.push(tile);
             }
         }
 
-        writeln!(output)?;
+        writeln!(output, "{rendered_row}")?;
     }
 
     output.flush()?;
