@@ -11,7 +11,7 @@ fn main() {
 }
 
 fn start_new_game() {
-    let player = Player::new(String::from("Adventurer"));
+    let player = Player::new(String::from("Adventurer"), RoomId(0));
     let starting_room = Room::starting_room();
 
     println!("\nWelcome, {}.", player.name);

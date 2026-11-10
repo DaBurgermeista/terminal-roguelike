@@ -1,5 +1,8 @@
 // src/room.rs
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct RoomId(pub usize);
+
 #[derive(Debug)]
 pub struct Room {
     pub name: String,
