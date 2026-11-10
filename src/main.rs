@@ -1,10 +1,17 @@
 use inquire::{error::InquireError, Select};
 
+mod player;
+use player::Player;
+
 fn main() {
     run_main_menu();
 }
 
 fn run_main_menu() {
+    let player = Player::new(String::from("Adventurer"));
+
+    println!("Welcome, {}.", player.name);
+
     let options: Vec<&str> = vec![
         "New Game",
         "Quit Game",
