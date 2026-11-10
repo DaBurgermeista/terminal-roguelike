@@ -4,7 +4,7 @@ mod room;
 use inquire::{error::InquireError, Select};
 
 use player::Player;
-use room::{Room, RoomId};
+use room::{Room, Position};
 
 fn main() {
     run_main_menu();
@@ -14,7 +14,7 @@ fn start_new_game() {
     let rooms = vec![
         Room::starting_room(),
     ];
-    let player = Player::new(String::from("Adventurer"), RoomId(0));
+    let player = Player::new(String::from("Adventurer"), Position(x: 0, y: 0));
     let current_room = &rooms[player.current_room.0];
 
     println!("\nWelcome, {}.", player.name);

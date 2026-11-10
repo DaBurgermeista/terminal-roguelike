@@ -1,5 +1,5 @@
 // src/player.rs
-use crate::room::RoomId;
+use crate::room::Position;
 
 #[derive(Debug)]
 pub struct Player {
@@ -9,12 +9,12 @@ pub struct Player {
     pub attack: i32,      // Determines attack hit chance
     pub strength: i32,    // Determines damage (Max hit ceiling)
     pub defense: i32,     // Determines chance for incoming attacks to miss and damage mitigation
-    pub current_room: RoomId,
+    pub position: Position,
 }
 
 impl Player {
 
-    pub fn new(name: String, current_room: RoomId) -> Self {
+    pub fn new(name: String, position: Position) -> Self {
         Player {
             name,
             health: 10,
@@ -22,7 +22,7 @@ impl Player {
             attack: 3,
             strength: 3,
             defense: 3,
-            current_room,
+            position,
         }
     }
 
