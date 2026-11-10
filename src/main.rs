@@ -67,7 +67,7 @@ fn start_new_game() {
             println!("There was an error: {error}");
             false
         }
-    }
+    };
     // --- Testing Purposes
     if moved{
         let new_room = world
