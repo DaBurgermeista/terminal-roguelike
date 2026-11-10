@@ -32,7 +32,7 @@ impl Player {
     }
 
     pub fn heal(&mut self, amount: i32) {
-        self.health = (self.health + amount).min(player.max_health);
+        self.health = (self.health + amount).min(self.max_health);
     }
 
 }
