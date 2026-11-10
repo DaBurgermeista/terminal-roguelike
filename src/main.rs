@@ -11,13 +11,16 @@ fn main() {
 }
 
 fn start_new_game() {
+    let rooms = vec![
+        Room::starting_room(),
+    ]
     let player = Player::new(String::from("Adventurer"), RoomId(0));
-    let starting_room = Room::starting_room();
+    let current_room = &rooms[player.current_room.0];
 
     println!("\nWelcome, {}.", player.name);
-    println!("\n{}", starting_room.name);
-    println!("{}", "-".repeat(starting_room.name.len()));
-    println!("{}", starting_room.description);
+    println!("\n{}", current_room.name);
+    println!("{}", "-".repeat(current_room.name.len()));
+    println!("{}", current_room.description);
     println!("\nYour adventure begins here.");
 }
 
