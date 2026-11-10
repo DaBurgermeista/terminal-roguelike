@@ -51,7 +51,7 @@ mod tests {
 
     #[test]
     fn new_player_uses_provided_name() {
-        let player = Player::new(String::from("Adventurer"));
+        let mut player = Player::new(String::from("Adventurer"));
 
         assert_eq!(player.name, "Adventurer")
     }
